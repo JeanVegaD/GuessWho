@@ -3,10 +3,11 @@ from tkinter import filedialog
 from tkinter import messagebox
 from tkinter import ttk
 import tkinter as tk
-
 from PIL import Image, ImageTk
-
 import os.path
+
+from GameWindow import GameWindow
+from Character import Character
 
 
 def mainWindow():
@@ -115,21 +116,23 @@ def helpWindow():
     help_window.mainloop()
 
 def newGame():
-    global game_window
-    game_window=Tk()
-    game_window.geometry("1010x750")
-    game_window.title("Guess Who?")
-    game_window.config(bg="#ffffff")
-    game_window.resizable(False, False)
-    #Fondo de la ventana
-    fondo=Image.open("../src/images/background_game.png")
-    fondo_aux = ImageTk.PhotoImage(fondo)
-    ins_fondo=Label(game_window,image=fondo_aux).place(x=-2,y=-2)
-    
 
+    c1=Character("Jean","../src/defaultGame/char_imgs/017-king.png")
+    c6=Character("Sofia","../src/defaultGame/char_imgs/048-hipster-1.png")
+    c7=Character("Kendall","../src/defaultGame/char_imgs/045-punk-1.png")
+    c2=Character("Joss","../src/defaultGame/char_imgs/032-punk.png")
+    c3=Character("Axel","../src/defaultGame/char_imgs/019-basketball-player.png")
+    c4=Character("Samuel","../src/defaultGame/char_imgs/004-artist.png")
+    c5=Character("Kevin","../src/defaultGame/char_imgs/018-clown.png")
+    c9=Character("Kevin","../src/defaultGame/char_imgs/018-clown.png")
+    c10=Character("Kevin","../src/defaultGame/char_imgs/018-clown.png")
+    C11=Character("Kevin","../src/defaultGame/char_imgs/018-clown.png")
+    C12=Character("Kevin","../src/defaultGame/char_imgs/018-clown.png")
 
-    game_window.mainloop()
+    character_list=[c1,c6,c7,c4,c5,c9,c10,C11,C12]
+    game_window = GameWindow(character_list)
 
-
-#mainWindow()
 newGame()
+
+
+
