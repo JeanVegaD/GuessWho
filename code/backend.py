@@ -36,9 +36,7 @@ def loadCharacters(filePath):
                     state
                 )
                 characters += [person]
-        print(attributes)
-        #return characters,attributes
-        filterAttributes(characters,"hair")
+        return characters,attributes
 
     except ValueError as error:
         return "Error, wrong JSON"
@@ -52,9 +50,7 @@ def filterAttributes(characters,value):
             if (value == props[0]):
                 if not (props[1] in results):
                     results += [props[1]]
-    print(results)
-    filterValues(characters,value,results[0])
-    #return results
+    return results
 
 def filterValues(characters,prop,value):
     results = []
@@ -64,6 +60,5 @@ def filterValues(characters,prop,value):
             if ((props[0] == prop) and (value == props[1])):
                 if not (props[2] in results):
                     results += [props[2]]
-    print(results)
     return results
 
