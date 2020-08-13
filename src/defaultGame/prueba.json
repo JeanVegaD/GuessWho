@@ -116,7 +116,7 @@
          },
          {
             "name": "Michael",
-            "imgUrl":"../src/defaultGame/char_imgs/019-boy.png",
+            "imgUrl":"../src/defaultGame/char_imgs/019-basketball-player.png",
             "features":[
             {
                 "gender":{

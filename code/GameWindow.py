@@ -9,9 +9,12 @@ import backend
 
 #This class handles all the functions of the game GUI
 class GameWindow:
-    def __init__(self,char_list,user_character,comobo_list1):
+    def __init__(self,char_list,user_character,comobo_list1,name_list):
         self.char_list=char_list
+        global char_list2
+        char_list2=char_list
         self.user_character= user_character
+        self.name_list=name_list
         self.comobo_list1=comobo_list1
 
         self.winVar =Tk()
@@ -20,8 +23,8 @@ class GameWindow:
         self.winVar.config(bg="white")
         self.winVar.resizable(False, False)
         #Background window
-        background=Image.open("../src/images/background_game.png")
-        background_aux = ImageTk.PhotoImage(background)
+        #background=Image.open("../src/images/background_game.png")
+        #background_aux = ImageTk.PhotoImage(background)
         #Label(self.winVar,image=background_aux).place(x=-2,y=-2)
         self.setCharacter()
         self.setCombobox()
@@ -129,7 +132,7 @@ class GameWindow:
 
         Label(self.winVar,text="Adjective",relief=FLAT,bg="white",fg="#A6A6A6",font=('Corbel',11,"bold")).place(x=380,y=610)
         str_combo_adjective=StringVar()
-        combo_adjective = ttk.Combobox(self.winVar, width = 27,text="Adjective",state="readonly", textvariable=combo_adjective)
+        combo_adjective = ttk.Combobox(self.winVar, width = 27,text="Adjective",state="readonly", textvariable=str_combo_adjective)
         combo_adjective['values'] = (' January')
         combo_adjective.place(x=380,y=640)
 
@@ -139,15 +142,21 @@ class GameWindow:
         combo_value['values'] = (' January')
         combo_value.place(x=580,y=640)
 
+
+
         def onChangecomboPropiety(self):
-            elementas=backend.filterAttributes(self.char_list,str_combo_property.get())
-            fillCombo(combo_adjective,elementes)
-            combo_adjective.current(0)
+            elementas=backend.filterAttributes(char_list2,str_combo_property.get())
+            fillCombo(combo_adjective,elementas)
+            str_combo_adjective.set("")
+            str_combo_value.set("")
+
+            #combo_adjective.current(0)
 
         def onChangecomboadjective(self):
-            elementas=backend.filterAttributes(self.char_list,str_combo_adjective.get())
-            fillCombo(combo_value,elementes)
-            combo_value.current(0)
+            elementas=backend.filterValues(char_list2,str_combo_property.get(),str_combo_adjective.get())
+            fillCombo(combo_value,elementas)
+            str_combo_value.set("")
+            #combo_value.current(0)
 
         combo_property.bind('<<ComboboxSelected>>', onChangecomboPropiety) 
         combo_adjective.bind('<<ComboboxSelected>>', onChangecomboadjective) 
@@ -155,9 +164,19 @@ class GameWindow:
         Button(self.winVar,text="Ask Question",width=20,bg="#f2f2f2",fg="#404040",font=('Corbel',12),relief=FLAT,highlightthickness=0,bd=0).place(x=780,y=640)
 
     def setEntry(self):
+
+        def fillCombo(combo,lista):
+            cache = list()
+            for element in lista:
+                cache.append(element)
+            combo['values'] = cache
+            combo.current(0)
+
         Label(self.winVar,text="Guess character",relief=FLAT,bg="white",fg="#A6A6A6",font=('Corbel',11,"bold")).place(x=180,y=670)
         comobo_guess = ttk.Combobox(self.winVar, width = 94,text="guess",state="readonly")
         comobo_guess['values'] = (' January')
         comobo_guess.place(x=180,y=700)
+
+        fillCombo(comobo_guess,self.name_list)
 
         Button(self.winVar,text="Submit",width=20,bg="#f2f2f2",fg="#404040",font=('Corbel',12),relief=FLAT,highlightthickness=0, bd=0).place(x=780,y=695)

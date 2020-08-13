@@ -79,6 +79,7 @@ def initGame():
     print(init_game)
     if(init_game):
         if(nicknname.get()!=""):
+            main_window.destroy()
             newGame()
         else:
             messagebox.showerror(title="Nickname error", message="Nicknname cannot be empty")
@@ -121,17 +122,17 @@ def helpWindow():
     help_window.mainloop()
 
 def newGame():
-    character_list, combo_list1=backend.loadCharacters(filepath)
+    character_list, combo_list1, name_list=backend.loadCharacters(filepath)
 
     user_random=random.randint(0, len(character_list)-1)
     user_char=character_list[user_random]
-    character_list.remove(user_random)
+    character_list.remove(user_char)
 
     pc_random=random.randint(0, len(character_list)-1)
     pc_char=character_list[pc_random]
-    character_list.remove(pc_random)
+    character_list.remove(pc_char)
 
-    game_window = GameWindow(character_list,c1)
+    game_window = GameWindow(character_list,user_char,combo_list1,name_list)
 
 
 mainWindow()
