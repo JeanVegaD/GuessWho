@@ -8,6 +8,7 @@ import os.path
 
 from GameWindow import GameWindow
 import backend
+import random
 
 
 def mainWindow():
@@ -59,6 +60,7 @@ def mainWindow():
 def loadFile():
         global init_game
         init_game=False
+        global filepath
         filepath= filedialog.askopenfilename(filetypes = (("JSON files", "*.json"),("All files", "*.*") ))
         
         if(filepath!=""):
@@ -76,8 +78,8 @@ def initGame():
     global init_game
     print(init_game)
     if(init_game):
-        if(nicknname!=""):
-            print("entre")
+        if(nicknname.get()!=""):
+            newGame()
         else:
             messagebox.showerror(title="Nickname error", message="Nicknname cannot be empty")
     else:
@@ -119,20 +121,21 @@ def helpWindow():
     help_window.mainloop()
 
 def newGame():
+    character_list, combo_list1=backend.loadCharacters(filepath)
 
-    c1=Character("Jean","../src/defaultGame/char_imgs/017-king.png")
-    c2=Character("Sofia","../src/defaultGame/char_imgs/048-hipster-1.png")
-    c3=Character("Kendall","../src/defaultGame/char_imgs/045-punk-1.png")
-    c4=Character("Joss","../src/defaultGame/char_imgs/032-punk.png")
-    c5=Character("Axel","../src/defaultGame/char_imgs/019-basketball-player.png")
-    c6=Character("Samuel","../src/defaultGame/char_imgs/004-artist.png")
-    c7=Character("Kevin","../src/defaultGame/char_imgs/018-clown.png")
+    user_random=random.randint(0, len(character_list)-1)
+    user_char=character_list[user_random]
+    character_list.remove(user_random)
+
+    pc_random=random.randint(0, len(character_list)-1)
+    pc_char=character_list[pc_random]
+    character_list.remove(pc_random)
+
+    game_window = GameWindow(character_list,c1)
 
 
-    character_list=[c1,c2,c3,c4,c5,c6]
-    game_window = GameWindow(character_list,c7)
-
-newGame()
+mainWindow()
+#newGame()
 
 
 

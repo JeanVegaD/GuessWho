@@ -17,6 +17,7 @@ def loadCharacters(filePath):
     try:
         characters = []
         attributes = []
+        names = []
         data = validateJSON(filePath)
 
         for (k,v) in data.items():
@@ -29,6 +30,7 @@ def loadCharacters(filePath):
                         if not (key in attributes):
                             attributes += [key]
                 state = True
+                names += [character['name']]
                 person = Character(
                     character['name'],
                     character['imgUrl'],
@@ -36,7 +38,7 @@ def loadCharacters(filePath):
                     state
                 )
                 characters += [person]
-        return characters,attributes
+        return characters,attributes,names
 
     except ValueError as error:
         return "Error, wrong JSON"
