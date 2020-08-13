@@ -118,19 +118,16 @@ def helpWindow():
 def newGame():
 
     c1=Character("Jean","../src/defaultGame/char_imgs/017-king.png")
-    c6=Character("Sofia","../src/defaultGame/char_imgs/048-hipster-1.png")
-    c7=Character("Kendall","../src/defaultGame/char_imgs/045-punk-1.png")
-    c2=Character("Joss","../src/defaultGame/char_imgs/032-punk.png")
-    c3=Character("Axel","../src/defaultGame/char_imgs/019-basketball-player.png")
-    c4=Character("Samuel","../src/defaultGame/char_imgs/004-artist.png")
-    c5=Character("Kevin","../src/defaultGame/char_imgs/018-clown.png")
-    c9=Character("Kevin","../src/defaultGame/char_imgs/018-clown.png")
-    c10=Character("Kevin","../src/defaultGame/char_imgs/018-clown.png")
-    C11=Character("Kevin","../src/defaultGame/char_imgs/018-clown.png")
-    C12=Character("Kevin","../src/defaultGame/char_imgs/018-clown.png")
+    c2=Character("Sofia","../src/defaultGame/char_imgs/048-hipster-1.png")
+    c3=Character("Kendall","../src/defaultGame/char_imgs/045-punk-1.png")
+    c4=Character("Joss","../src/defaultGame/char_imgs/032-punk.png")
+    c5=Character("Axel","../src/defaultGame/char_imgs/019-basketball-player.png")
+    c6=Character("Samuel","../src/defaultGame/char_imgs/004-artist.png")
+    c7=Character("Kevin","../src/defaultGame/char_imgs/018-clown.png")
 
-    character_list=[c1,c6,c7,c4,c5,c9,c10,C11,C12]
-    game_window = GameWindow(character_list)
+
+    character_list=[c1,c2,c3,c4,c5,c6]
+    game_window = GameWindow(character_list,c7)
 
 newGame()
 
