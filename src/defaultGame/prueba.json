@@ -1,0 +1,247 @@
+{
+    "character":[ 
+        {
+            "name": "Freya",
+            "imgUrl": "../src/defaultGame/char_imgs/002-princess.png",
+            "features":[
+            {
+                "gender":{
+                     "type":"F"
+                 } ,
+                "ethnicity": {
+                 "type":"Caucasian"
+                },
+                "hair":{
+                    "type":"Straight",
+                    "color":"Blonde",
+                    "length":"Long"
+                 },
+                 "crown":{
+                     "type":"Rounded"
+                 }
+             }
+             ]
+         },
+         {
+             "name": "Luis",
+             "imgUrl":"../src/defaultGame/char_imgs/008-emo.png",
+             "features":[
+             {
+                 "gender":{
+                     "type":"M"
+                 } ,
+                 "ethnicity": {
+                     "type":"Caucasian"
+                    },
+ 
+                 "hair":{
+                     "type":"Straight",
+                     "color":"Brown",
+                     "length":"Short"
+                  },
+                  "coat":{
+                      "color":"Gray"
+                  }
+              }
+              ]
+          },
+          {
+            "name": "Charles",
+            "imgUrl":"../src/defaultGame/char_imgs/018-clown.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"M"
+                } ,
+                "ethnicity": {
+                    "type":"Caucasian"
+                   },
+
+                "hair":{
+                    "type":"Wavy",
+                    "color":"Green",
+                    "length":"Short"
+                 },
+                 "tie":{
+                     "color":"Red"
+                 }
+             }
+             ]
+         },
+         {
+            "name": "Alvin",
+            "imgUrl":"../src/defaultGame/char_imgs/021-squirrel.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"M"
+                } ,
+                "ethnicity": {
+                    "type":"Animal "
+                   },
+
+                "hair":{
+                    "type":"Straight",
+                    "color":"Brown",
+                    "length":"Short"
+                 },
+                 "suit":{
+                     "color":"Red"
+                 }
+             }
+             ]
+         },
+         {
+            "name": "Cristopher",
+            "imgUrl":"../src/defaultGame/char_imgs/031-boy.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"M"
+                } ,
+                "ethnicity": {
+                    "type":"Caucasian "
+                   },
+
+                "hair":{
+                    "type":"Straight",
+                    "color":"Black",
+                    "length":"Medium"
+                 },
+                 "sportswear":{
+                     "color":"Red"
+                 }
+             }
+             ]
+         },
+         {
+            "name": "Michael",
+            "imgUrl":"../src/defaultGame/char_imgs/019-boy.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"M"
+                } ,
+                "ethnicity": {
+                    "type":"Afro-descendants"
+                   },
+
+                "hair":{
+                    "type":"Curly",
+                    "color":"Black",
+                    "length":"Short"
+                 },
+                 "sportswear":{
+                     "color":"Red"
+                 },
+                 "earings":{
+                     "color" : "Yellow"
+                 }
+             }
+             ]
+         },
+         {
+            "name": "Nuwa",
+            "imgUrl":"../src/defaultGame/char_imgs/038-mermaid.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"F"
+                } ,
+                "ethnicity": {
+                    "type":"Caucasian"
+                   },
+
+                "hair":{
+                    "type":"Wavy",
+                    "color":"Purple",
+                    "length":"Long"
+                 },
+                 "accessories":{
+                     "color":"Yellow"
+                 }
+             }
+             ]
+         },
+         {
+            "name": "Xing Wu",
+            "imgUrl":"../src/defaultGame/char_imgs/040-geisha.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"F"
+                } ,
+                "ethnicity": {
+                    "type":"Asian"
+                   },
+
+                "hair":{
+                    "type":"Straight",
+                    "color":"Black",
+                    "length":"Long"
+                 },
+                 "accessories":{
+                     "color":"Red"
+                 },
+                 "kimono":{
+                     "color" : "Red"
+                 }
+             }
+             ]
+         },
+         {
+            "name": "Wisin",
+            "imgUrl":"../src/defaultGame/char_imgs/024-alien.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"Undefined"
+                } ,
+                "ethnicity": {
+                    "type":"Alien"
+                   },
+
+                "hair":{
+                    "type":"Bald",
+                    "color":"Green",
+                    "length":"Short"
+                 },
+                 "suit":{
+                     "color":"Pink"
+                 },
+                 "helmet":{
+                     "color":"Transparent"
+                 }
+             }
+             ]
+         },
+         {
+            "name": "Yandell",
+            "imgUrl":"../src/defaultGame/char_imgs/009-astronaut.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"M"
+                } ,
+                "ethnicity": {
+                    "type":"Caucasian"
+                   },
+
+                "hair":{
+                    "type":"Bald",
+                    "color":"White",
+                    "length":"Short"
+                 },
+                 "suit":{
+                     "color":"Orange"
+                 },
+                 "helmet":{
+                     "color":"Orange"
+                 }
+             }
+             ]
+         }
+
+ 
+     ]
+ }

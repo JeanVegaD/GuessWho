@@ -7,7 +7,7 @@ from PIL import Image, ImageTk
 import os.path
 
 from GameWindow import GameWindow
-import code.backend
+import backend
 
 
 def mainWindow():
@@ -66,8 +66,6 @@ def loadFile():
             if(extension==".json"):
                 btn_load_filetxt.set(nombre_archivo)
                 init_game=True
-                backend.loadCharacters(filepath)
-                print(init_game)
             else:
                 messagebox.showerror(title="File error", message="The file must be a .json")
 
