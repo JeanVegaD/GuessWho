@@ -56,6 +56,7 @@ def mainWindow():
 
 #Open the file explorer. Load and validate the selected file
 def loadFile():
+        global init_game
         init_game=False
         filepath= filedialog.askopenfilename(filetypes = (("JSON files", "*.json"),("All files", "*.*") ))
         
@@ -64,6 +65,8 @@ def loadFile():
             if(extension==".json"):
                 btn_load_filetxt.set(nombre_archivo)
                 init_game=True
+                backend.loadCharacters(filepath)
+                print(init_game)
             else:
                 messagebox.showerror(title="File error", message="The file must be a .json")
 
@@ -71,6 +74,8 @@ def loadFile():
 
 #Verify that everything is correct to start the game
 def initGame():
+    global init_game
+    print(init_game)
     if(init_game):
         if(nicknname!=""):
             print("entre")
@@ -123,6 +128,7 @@ def newGame():
     game_window.resizable(False, False)
     #Fondo de la ventana
     fondo=Image.open("../src/images/background_game.png")
+    #../src/images/background_game.png
     fondo_aux = ImageTk.PhotoImage(fondo)
     ins_fondo=Label(game_window,image=fondo_aux).place(x=-2,y=-2)
     
@@ -131,5 +137,5 @@ def newGame():
     game_window.mainloop()
 
 
-#mainWindow()
-newGame()
+mainWindow()
+#newGame()

@@ -1,0 +1,56 @@
+{
+    "character":[ 
+        {
+            "name": "Joss",
+            "imgUrl":"",
+            "features":[
+            {
+                 "gender":{
+                     "type":"M"
+                 } ,
+                "ethnicity": {
+                 "type":"Latin"
+                },
+                "hair":{
+                    "type":"african",
+                     "color":"black",
+                     "length":"short"
+                 },
+                 "barba":{
+                     "color":"black",
+                     "size":"18cm"
+                 },
+                 "gafas":{
+                     "color":"azul",
+                     "type":"rounded"
+                 }
+             }
+             ]
+         },
+         {
+             "name": "Carlos",
+             "imgUrl":"",
+             "features":[
+             {
+                 "gender":{
+                     "type":"F"
+                 } ,
+                 "ethnicity": {
+                     "type":"Asian"
+                    },
+ 
+                 "hair":{
+                     "type":"bald",
+                     "color":"black",
+                     "length":"short"
+                  },
+                  "barba":{
+                      "color":"black",
+                      "size":"18cm"
+                  }
+              }
+              ]
+          }
+ 
+     ]
+ }
