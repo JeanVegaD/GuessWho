@@ -7,7 +7,7 @@ from PIL import Image, ImageTk
 import os.path
 
 from GameWindow import GameWindow
-from Character import Character
+import code.backend
 
 
 def mainWindow():
