@@ -7,7 +7,8 @@ from PIL import Image, ImageTk
 import os.path
 
 from GameWindow import GameWindow
-import code.backend
+import backend
+import random
 
 
 def mainWindow():
@@ -59,6 +60,7 @@ def mainWindow():
 def loadFile():
         global init_game
         init_game=False
+        global filepath
         filepath= filedialog.askopenfilename(filetypes = (("JSON files", "*.json"),("All files", "*.*") ))
         
         if(filepath!=""):
@@ -66,8 +68,6 @@ def loadFile():
             if(extension==".json"):
                 btn_load_filetxt.set(nombre_archivo)
                 init_game=True
-                backend.loadCharacters(filepath)
-                print(init_game)
             else:
                 messagebox.showerror(title="File error", message="The file must be a .json")
 
@@ -78,8 +78,8 @@ def initGame():
     global init_game
     print(init_game)
     if(init_game):
-        if(nicknname!=""):
-            print("entre")
+        if(nicknname.get()!=""):
+            newGame()
         else:
             messagebox.showerror(title="Nickname error", message="Nicknname cannot be empty")
     else:
@@ -121,12 +121,21 @@ def helpWindow():
     help_window.mainloop()
 
 def newGame():
+    character_list, combo_list1=backend.loadCharacters(filepath)
+
+    user_random=random.randint(0, len(character_list)-1)
+    user_char=character_list[user_random]
+    character_list.remove(user_random)
+
+    pc_random=random.randint(0, len(character_list)-1)
+    pc_char=character_list[pc_random]
+    character_list.remove(pc_random)
+
+    game_window = GameWindow(character_list,c1)
 
 
-    character_list=[]
-    #game_window = GameWindow(character_list,)
-
-newGame()
+mainWindow()
+#newGame()
 
 
 

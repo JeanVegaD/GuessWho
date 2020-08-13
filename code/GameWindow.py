@@ -5,12 +5,15 @@ from tkinter import ttk
 import tkinter as tk
 from PIL import Image, ImageTk
 import os.path
+import backend
 
 #This class handles all the functions of the game GUI
 class GameWindow:
-    def __init__(self,char_list,user_character):
+    def __init__(self,char_list,user_character,comobo_list1):
         self.char_list=char_list
         self.user_character= user_character
+        self.comobo_list1=comobo_list1
+
         self.winVar =Tk()
         self.winVar.geometry("1010x750")
         self.winVar.title("Guess Who?")
@@ -117,31 +120,32 @@ class GameWindow:
             combo['values'] = cache
 
         Label(self.winVar,text="Property",relief=FLAT,bg="white",fg="#A6A6A6",font=('Corbel',11,"bold")).place(x=180,y=610)
-        combo_property = ttk.Combobox(self.winVar, width = 27,text="Property",state="readonly")
+        str_combo_property=StringVar()
+        combo_property = ttk.Combobox(self.winVar, width = 27,text="Property",state="readonly",textvariable=str_combo_property)
         combo_property['values'] = (' January')
         combo_property.place(x=180,y=640)
-    
-        elementes=["hola","mundo"]
-        fillCombo(combo_property,elementes)
 
+        fillCombo(combo_property,self.comobo_list1)
 
         Label(self.winVar,text="Adjective",relief=FLAT,bg="white",fg="#A6A6A6",font=('Corbel',11,"bold")).place(x=380,y=610)
-        combo_adjective = ttk.Combobox(self.winVar, width = 27,text="Adjective",state="readonly")
+        str_combo_adjective=StringVar()
+        combo_adjective = ttk.Combobox(self.winVar, width = 27,text="Adjective",state="readonly", textvariable=combo_adjective)
         combo_adjective['values'] = (' January')
         combo_adjective.place(x=380,y=640)
 
         Label(self.winVar,text="Value",relief=FLAT,bg="white",fg="#A6A6A6",font=('Corbel',11,"bold")).place(x=580,y=610)
-        combo_value = ttk.Combobox(self.winVar, width = 27,text="Value",state="readonly")
+        str_combo_value=StringVar()
+        combo_value = ttk.Combobox(self.winVar, width = 27,text="Value",state="readonly", textvariable=str_combo_value)
         combo_value['values'] = (' January')
         combo_value.place(x=580,y=640)
 
         def onChangecomboPropiety(self):
-            elementes=["carlos","alvarado"]
+            elementas=backend.filterAttributes(self.char_list,str_combo_property.get())
             fillCombo(combo_adjective,elementes)
             combo_adjective.current(0)
 
         def onChangecomboadjective(self):
-            elementes=["sdad","adad"]
+            elementas=backend.filterAttributes(self.char_list,str_combo_adjective.get())
             fillCombo(combo_value,elementes)
             combo_value.current(0)
 
