@@ -122,17 +122,9 @@ def helpWindow():
 
 def newGame():
 
-    c1=Character("Jean","../src/defaultGame/char_imgs/017-king.png")
-    c2=Character("Sofia","../src/defaultGame/char_imgs/048-hipster-1.png")
-    c3=Character("Kendall","../src/defaultGame/char_imgs/045-punk-1.png")
-    c4=Character("Joss","../src/defaultGame/char_imgs/032-punk.png")
-    c5=Character("Axel","../src/defaultGame/char_imgs/019-basketball-player.png")
-    c6=Character("Samuel","../src/defaultGame/char_imgs/004-artist.png")
-    c7=Character("Kevin","../src/defaultGame/char_imgs/018-clown.png")
 
-
-    character_list=[c1,c2,c3,c4,c5,c6]
-    game_window = GameWindow(character_list,c7)
+    character_list=[]
+    #game_window = GameWindow(character_list,)
 
 newGame()
 
