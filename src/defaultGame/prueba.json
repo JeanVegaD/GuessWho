@@ -116,14 +116,14 @@
          },
          {
             "name": "Michael",
-            "imgUrl":"../src/defaultGame/char_imgs/019-boy.png",
+            "imgUrl":"../src/defaultGame/char_imgs/019-basketball-player.png",
             "features":[
             {
                 "gender":{
                     "type":"M"
                 } ,
                 "ethnicity": {
-                    "type":"Afro-descendants"
+                    "type":"Afro-descendant"
                    },
 
                 "hair":{
@@ -134,7 +134,7 @@
                  "sportswear":{
                      "color":"Red"
                  },
-                 "earings":{
+                 "accessories":{
                      "color" : "Yellow"
                  }
              }
@@ -200,12 +200,6 @@
                 "ethnicity": {
                     "type":"Alien"
                    },
-
-                "hair":{
-                    "type":"Bald",
-                    "color":"Green",
-                    "length":"Short"
-                 },
                  "suit":{
                      "color":"Pink"
                  },
@@ -226,12 +220,6 @@
                 "ethnicity": {
                     "type":"Caucasian"
                    },
-
-                "hair":{
-                    "type":"Bald",
-                    "color":"White",
-                    "length":"Short"
-                 },
                  "suit":{
                      "color":"Orange"
                  },
@@ -240,8 +228,230 @@
                  }
              }
              ]
+         },
+         {
+            "name": "Gadjet",
+            "imgUrl":"../src/defaultGame/char_imgs/007-detective.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"M"
+                } ,
+                "ethnicity": {
+                    "type":"Caucasian"
+                   },
+
+                "hair":{
+                    "type":"Straight",
+                    "color":"Grey",
+                    "length":"Long"
+                 },
+                 "suit":{
+                     "color":"Brown"
+                 },
+                 "hat":{
+                     "color":"Brown"
+                 }
+             }
+             ]
+         },
+         {
+            "name": "Link",
+            "imgUrl":"../src/defaultGame/char_imgs/026-elf.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"Undefined"
+                } ,
+                "ethnicity": {
+                    "type":"Caucasian"
+                   },
+
+                "hair":{
+                    "type":"Straight",
+                    "color":"Brown",
+                    "length":"Long"
+                 },
+                 "ears":{
+                     "color":"Big"
+                 }
+             }
+             ]
+         },
+         {
+            "name": "Miyab",
+            "imgUrl":"../src/defaultGame/char_imgs/050-muslim.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"F"
+                } ,
+                "ethnicity": {
+                    "type":"Muslim"
+                   },
+                 "accessories":{
+                     "color":"Pink"
+                 }
+             }
+             ]
+         },
+         {
+            "name": "Santiago",
+            "imgUrl":"../src/defaultGame/char_imgs/037-runner.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"M"
+                } ,
+                "ethnicity": {
+                    "type":"Caucasian"
+                   },
+                "hair":{
+                    "type":"Wavy",
+                    "color":"Black",
+                    "length":"Long"
+                 },
+                 "sportswear":{
+                    "color":"Blue"
+                },
+                 "accessories":{
+                     "color":"White"
+                 }
+             }
+             ]
+         },
+         {
+            "name": "Mario",
+            "imgUrl":"../src/defaultGame/char_imgs/032-punk.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"M"
+                } ,
+                "ethnicity": {
+                    "type":"Afro-descendant"
+                   },
+                "hair":{
+                    "type":"Curly",
+                    "color":"Black",
+                    "length":"Short"
+                 },
+                "accessories":{
+                     "color":"Yellow"
+                 }
+             }
+             ]
+         },
+         {
+            "name": "Marco",
+            "imgUrl":"../src/defaultGame/char_imgs/045-punk.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"M"
+                } ,
+                "ethnicity": {
+                    "type":"Caucasian"
+                   },
+                "hair":{
+                    "type":"Straight",
+                    "color":"Green",
+                    "length":"Short"
+                 },
+                "accessories":{
+                     "color":"Yellow"
+                 }
+             }
+             ]
+         },
+         {
+            "name": "Noah",
+            "imgUrl":"../src/defaultGame/char_imgs/046-hipster.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"M"
+                } ,
+                "ethnicity": {
+                    "type":"Caucasian"
+                },
+                "hair":{
+                    "type":"Straight",
+                    "color":"Brown",
+                    "length":"Short"
+                 },
+                "mustache":{
+                     "color":"Brown"
+                 },
+                 "accessories":{
+                    "color":"Black"
+                }
+             }
+             ]
+         },
+         {
+            "name": "Miley",
+            "imgUrl":"../src/defaultGame/char_imgs/033-girl-1.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"F"
+                } ,
+                "ethnicity": {
+                    "type":"Caucasian"
+                },
+                "hair":{
+                    "type":"Straight",
+                    "color":"Blonde",
+                    "length":"Medium"
+                 }
+             }
+             ]
+         },
+         {
+            "name": "Chilly",
+            "imgUrl":"../src/defaultGame/char_imgs/014-penguin.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"F"
+                } ,
+                "ethnicity": {
+                    "type":"Animal"
+                },
+                "hair":{
+                    "type":"Straight",
+                    "color":"Blue",
+                    "length":"Short"
+                 },
+                 "accessories":{
+                    "color":"Pink"
+                }
+             }
+             ]
+         },
+         {
+            "name": "Phillip",
+            "imgUrl":"../src/defaultGame/char_imgs/049-man-1.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"M"
+                } ,
+                "ethnicity": {
+                    "type":"Caucasian"
+                },
+                "hair":{
+                    "type":"Straight",
+                    "color":"Blonde",
+                    "length":"Long"
+                 },
+                 "accessories":{
+                    "color":"Red"
+                }
+             }
+             ]
          }
 
- 
      ]
  }
