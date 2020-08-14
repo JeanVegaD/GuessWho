@@ -11,7 +11,7 @@ import random
 #This class handles all the functions of the game GUI
 class GameWindow:
     def __init__(self,char_list,user_character,char_list_pc,pc_character,comobo_list1,name_list):
-        
+
         self.char_list=char_list
         self.char_list_pc=char_list_pc
 
@@ -41,7 +41,11 @@ class GameWindow:
 
 
 
-    
+    ##
+    ##E: Lista de los caracteres a traves del self
+    ##S: Crea una segunda imagen utilizable para la interfaz 
+    ##R: La ruta de la imagen debe ser válida
+    ##
     def setScrollFrame(self):
         charactersFrame=Frame(self.winVar,relief=FLAT,bd=1,width=990,height=550,bg="white")
         charactersFrame.place(x=-2,y=-2)
@@ -50,6 +54,7 @@ class GameWindow:
             canvas.configure(scrollregion=canvas.bbox("all"))
             
         canvas=Canvas(charactersFrame)
+        global charactersFrame_aux
         charactersFrame_aux=Frame(canvas,bg="white")
         myscrollbar=Scrollbar(charactersFrame,orient="vertical",command=canvas.yview)
         canvas.configure(yscrollcommand=myscrollbar.set,width=990,height=550,bg="white")
@@ -76,7 +81,7 @@ class GameWindow:
         for character in  (self.char_list):
             character.setImage()
             img=character.getImage()
-            Button(charactersFrame_aux,image=img,bg="white",relief=FLAT,highlightthickness=0,bd=0).place(x=gridX,y=gridY)
+            Label(charactersFrame_aux,image=img,bg="white",relief=FLAT,highlightthickness=0,bd=0).place(x=gridX,y=gridY)
             gridX+=164
             cont+=1
             if(cont>6):
@@ -103,6 +108,22 @@ class GameWindow:
        
 
         #charactersFrame_aux.mainloop()
+
+    def reloadCharacters(self):
+        gridX=32
+        gridY=15
+        cont=0
+        for character in  (self.char_list):
+            character.setImage()
+            img=character.getImage()
+            Label(charactersFrame_aux,image=img,bg="white",relief=FLAT,highlightthickness=0,bd=0).place(x=gridX,y=gridY)
+            gridX+=164
+            cont+=1
+            if(cont>6):
+                cont=0
+                gridX=32
+                gridY+=154
+
         
     def setCharacter(self):
         #Set background label for characters
@@ -129,6 +150,7 @@ class GameWindow:
             combo['values'] = cache
 
         Label(self.winVar,text="Property",relief=FLAT,bg="white",fg="#A6A6A6",font=('Corbel',11,"bold")).place(x=180,y=610)
+        global str_combo_property
         str_combo_property=StringVar()
         combo_property = ttk.Combobox(self.winVar, width = 27,text="Property",state="readonly",textvariable=str_combo_property)
         combo_property['values'] = ('')
@@ -137,12 +159,14 @@ class GameWindow:
         fillCombo(combo_property,self.comobo_list1)
 
         Label(self.winVar,text="Adjective",relief=FLAT,bg="white",fg="#A6A6A6",font=('Corbel',11,"bold")).place(x=380,y=610)
+        global str_combo_adjective
         str_combo_adjective=StringVar()
         combo_adjective = ttk.Combobox(self.winVar, width = 27,text="Adjective",state="readonly", textvariable=str_combo_adjective)
         combo_adjective['values'] = ('')
         combo_adjective.place(x=380,y=640)
 
         Label(self.winVar,text="Value",relief=FLAT,bg="white",fg="#A6A6A6",font=('Corbel',11,"bold")).place(x=580,y=610)
+        global str_combo_value
         str_combo_value=StringVar()
         combo_value = ttk.Combobox(self.winVar, width = 27,text="Value",state="readonly", textvariable=str_combo_value)
         combo_value['values'] = ('')
@@ -167,7 +191,7 @@ class GameWindow:
         combo_property.bind('<<ComboboxSelected>>', onChangecomboPropiety) 
         combo_adjective.bind('<<ComboboxSelected>>', onChangecomboadjective) 
 
-        Button(self.winVar,text="Ask Question",width=20,bg="#f2f2f2",fg="#404040",font=('Corbel',12),relief=FLAT,highlightthickness=0,bd=0).place(x=780,y=640)
+        Button(self.winVar,text="Ask Question",width=20,bg="#f2f2f2",fg="#404040",font=('Corbel',12),command=self.askIA ,relief=FLAT,highlightthickness=0,bd=0).place(x=780,y=640)
 
     def setEntry(self):
 
@@ -228,7 +252,20 @@ class GameWindow:
 
 
     def pcTurn(self):
+        #char=self.char_list[5]
+        #char.imagepath="../src/images/xicon.png"
+        #self.char_list[5]=char
+        self.reloadCharacters()
+
+
+
         self.changeTurn()
+
+    def askIA(self):
+        if(str_combo_property.get()!="" and str_combo_property.get()!="" and str_combo_value.get()!=""):
+            features=[str_combo_property.get(),str_combo_property.get(),str_combo_value.get()]
+        else:
+            messagebox.showerror(title="Empty field", message="Fields cannot be empty")
 
 
     def guessCharacter(self):
@@ -236,6 +273,7 @@ class GameWindow:
             self.insertInConsole("the user tried to guess the character with: "+ self.str_comobo_guess.get())
             if(self.str_comobo_guess.get()==self.pc_character.getName()):
                  self.insertInConsole("successful character")
+                 messagebox.showinfo(title="Successful", message="You guessed the character")
             else:
                  self.insertInConsole("wrong character")
                  messagebox.showerror(title="Fail", message="Wrong character")

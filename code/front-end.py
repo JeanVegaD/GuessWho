@@ -10,7 +10,9 @@ from GameWindow import GameWindow
 import backend
 import random
 
-
+##
+##UI: ventana de seleccion de Json y nombre de usuario
+##
 def mainWindow():
     global main_window
     main_window=Tk()
@@ -56,7 +58,12 @@ def mainWindow():
     main_window.mainloop()
 
 
-#Open the file explorer. Load and validate the selected file
+
+##
+##E: Ruta de un archivo 
+##S: Si el archivo en un JSON valido, lo calamacena
+##R: El archivo debe ser un JSON 
+##
 def loadFile():
         global init_game
         init_game=False
@@ -73,10 +80,12 @@ def loadFile():
 
 
 
-#Verify that everything is correct to start the game
+##
+##E: nombre de usario y variable de verificacion
+##S: Ejecuta la ventana del juego
+##R: Debe de haber un archivo JSON cargado y un nickname valido
+##
 def initGame():
-    global init_game
-    print(init_game)
     if(init_game):
         if(nicknname.get()!=""):
             main_window.destroy()
@@ -87,7 +96,9 @@ def initGame():
         messagebox.showerror(title="File error", message="Select a valid file")
 
 
-#Infomation window
+##
+##UI: ventana con informacion del juego
+##
 def infoWindow():
     global info_window
     info_window=Toplevel()
@@ -104,7 +115,9 @@ def infoWindow():
 
     info_window.mainloop()
 
-#Help window
+##
+##UI: ventana con la ayuda del juego
+##
 def helpWindow():
     global help_window
     help_window=Toplevel()
@@ -121,6 +134,13 @@ def helpWindow():
 
     help_window.mainloop()
 
+
+
+##
+##E: Lista de personaje del JSON cargado 
+##S: Ejecuta la ventana del juego
+##R: La estructura del JSON debe conicidir con lo establecido en la documentación
+##
 def newGame():
     character_list_user, combo_list1, name_list=backend.loadCharacters(filepath)
     random.shuffle(character_list_user)
@@ -135,7 +155,6 @@ def newGame():
     game_window = GameWindow(character_list_user,user_char,character_list_pc,pc_char,combo_list1,name_list)
 
 mainWindow()
-#newGame()
 
 
 
