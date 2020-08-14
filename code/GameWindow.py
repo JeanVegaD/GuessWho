@@ -45,10 +45,10 @@ class GameWindow:
         self.pc_character=pc_character
 
 
-        print("---------------------------------")
-        print(self.pc_character.name)
-        print(self.user_character.name)
-        print("---------------------------------")
+        #print("---------------------------------")
+        #print(self.pc_character.name)
+        #print(self.user_character.name)
+        #print("---------------------------------")
         self.name_list=name_list
         self.comobo_list1=comobo_list1
 
@@ -106,9 +106,9 @@ class GameWindow:
         gridX=32
         gridY=15
         cont=0
-        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
+        #print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
         for character in  (self.char_list):
-            print(character.name)
+            #print(character.name)
             character.setImage()
             img=character.getImage()
             Label(charactersFrame_aux,image=img,bg="white",relief=FLAT,highlightthickness=0,bd=0).place(x=gridX,y=gridY)
@@ -294,7 +294,7 @@ class GameWindow:
     ##R: 
     ##
     def insertInConsole(self,msg):
-        message=msg+"\n\n"
+        message=str(msg)+"\n\n"
         self.textConsole.configure(state='normal')
         self.textConsole.insert(tk.END, message) 
         self.textConsole.configure(state='disabled')
@@ -338,8 +338,18 @@ class GameWindow:
     def pcTurn(self):
         max_index = self.features_counter_pc.index(max(self.features_counter_pc))
         feature = self.features_values_pc[max_index]
+        self.insertInConsole("feature:")
+        self.insertInConsole(str(feature))
+        self.insertInConsole("Matching Quantity")
+        self.insertInConsole(str(max(self.features_counter_pc)))
+
         question = "Character: "+feature[0]+"  "+feature[1]+" "+feature[2]+"?"
+        self.insertInConsole("Question:")
+        self.insertInConsole(question)
         answer = self.askQuestion(question)
+
+        self.insertInConsole("Answer:")
+        self.insertInConsole(answer)
 
         found_character = None
         flag = False
@@ -379,7 +389,7 @@ class GameWindow:
             messagebox.showinfo("LOST","PC WINS YOUR CHARACTER IS "+found_character.name)
             self.winVar.destroy()
         if len(self.char_list_pc) == 1:
-            print("Su caracter es:"+self.char_list_pc[0].name)
+            #print("Su caracter es:"+self.char_list_pc[0].name)
             messagebox.showinfo("LOST","PC WINS YOUR CHARACTER IS "+self.char_list_pc[0].name)
             self.winVar.destroy()
 
