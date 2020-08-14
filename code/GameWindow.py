@@ -6,14 +6,21 @@ import tkinter as tk
 from PIL import Image, ImageTk
 import os.path
 import backend
+import random
 
 #This class handles all the functions of the game GUI
 class GameWindow:
-    def __init__(self,char_list,user_character,comobo_list1,name_list):
+    def __init__(self,char_list,user_character,char_list_pc,pc_character,comobo_list1,name_list):
+        
         self.char_list=char_list
+        self.char_list_pc=char_list_pc
+
         global char_list2
         char_list2=char_list
+
         self.user_character= user_character
+        self.pc_character=pc_character
+
         self.name_list=name_list
         self.comobo_list1=comobo_list1
 
@@ -22,19 +29,19 @@ class GameWindow:
         self.winVar.title("Guess Who?")
         self.winVar.config(bg="white")
         self.winVar.resizable(False, False)
-        #Background window
-        #background=Image.open("../src/images/background_game.png")
-        #background_aux = ImageTk.PhotoImage(background)
-        #Label(self.winVar,image=background_aux).place(x=-2,y=-2)
+
         self.setCharacter()
         self.setCombobox()
         self.setEntry()
-
-
         self.setScrollFrame()
-        self.winVar.mainloop()
 
-    #
+        self.initConsole()
+        self.startGame()
+        mainloop()
+
+
+
+    
     def setScrollFrame(self):
         charactersFrame=Frame(self.winVar,relief=FLAT,bd=1,width=990,height=550,bg="white")
         charactersFrame.place(x=-2,y=-2)
@@ -53,7 +60,6 @@ class GameWindow:
         charactersFrame_aux.bind("<Configure>",frameBind)
         canvas.configure(scrollregion=canvas.bbox("all"))
 
-        number_characters = 2
         gridX=0
         gridY=0
         for i in (self.char_list):
@@ -96,7 +102,7 @@ class GameWindow:
         #Defaul
        
 
-        charactersFrame_aux.mainloop()
+        #charactersFrame_aux.mainloop()
         
     def setCharacter(self):
         #Set background label for characters
@@ -107,8 +113,8 @@ class GameWindow:
         Label(self.winVar,image=self.charlbl_aux,bg="white",relief=FLAT).place(x=30,y=600)
 
     
-        self.user_character.setImage()
-        Label(self.winVar,image=self.user_character.getImage(),bg="white",relief=FLAT).place(x=35,y=605)
+        self.user_character.setSelectedImageChar()
+        Label(self.winVar,image=self.user_character.getImage_aux(),bg="white",relief=FLAT).place(x=35,y=605)
 
         name_char=tk.StringVar()
         name_char.set(self.user_character.getName())
@@ -125,7 +131,7 @@ class GameWindow:
         Label(self.winVar,text="Property",relief=FLAT,bg="white",fg="#A6A6A6",font=('Corbel',11,"bold")).place(x=180,y=610)
         str_combo_property=StringVar()
         combo_property = ttk.Combobox(self.winVar, width = 27,text="Property",state="readonly",textvariable=str_combo_property)
-        combo_property['values'] = (' January')
+        combo_property['values'] = ('')
         combo_property.place(x=180,y=640)
 
         fillCombo(combo_property,self.comobo_list1)
@@ -133,13 +139,13 @@ class GameWindow:
         Label(self.winVar,text="Adjective",relief=FLAT,bg="white",fg="#A6A6A6",font=('Corbel',11,"bold")).place(x=380,y=610)
         str_combo_adjective=StringVar()
         combo_adjective = ttk.Combobox(self.winVar, width = 27,text="Adjective",state="readonly", textvariable=str_combo_adjective)
-        combo_adjective['values'] = (' January')
+        combo_adjective['values'] = ('')
         combo_adjective.place(x=380,y=640)
 
         Label(self.winVar,text="Value",relief=FLAT,bg="white",fg="#A6A6A6",font=('Corbel',11,"bold")).place(x=580,y=610)
         str_combo_value=StringVar()
         combo_value = ttk.Combobox(self.winVar, width = 27,text="Value",state="readonly", textvariable=str_combo_value)
-        combo_value['values'] = (' January')
+        combo_value['values'] = ('')
         combo_value.place(x=580,y=640)
 
 
@@ -173,10 +179,69 @@ class GameWindow:
             combo.current(0)
 
         Label(self.winVar,text="Guess character",relief=FLAT,bg="white",fg="#A6A6A6",font=('Corbel',11,"bold")).place(x=180,y=670)
-        comobo_guess = ttk.Combobox(self.winVar, width = 94,text="guess",state="readonly")
+        self.str_comobo_guess=StringVar()
+        comobo_guess = ttk.Combobox(self.winVar, width = 94,text="guess",state="readonly", textvariable=self.str_comobo_guess)
         comobo_guess['values'] = (' January')
         comobo_guess.place(x=180,y=700)
 
         fillCombo(comobo_guess,self.name_list)
 
-        Button(self.winVar,text="Submit",width=20,bg="#f2f2f2",fg="#404040",font=('Corbel',12),relief=FLAT,highlightthickness=0, bd=0).place(x=780,y=695)
+        Button(self.winVar,text="Submit",width=20,bg="#f2f2f2",fg="#404040",command=self.guessCharacter,font=('Corbel',12),relief=FLAT,highlightthickness=0, bd=0).place(x=780,y=695)
+
+    def askQuestion(self,msg):
+        return messagebox.askyesno(message=msg, title="Question")
+         
+    def initConsole(self):
+        console_window=Toplevel()
+        console_window.geometry("345x500")
+        console_window.title("Console")
+        console_window.config(bg="#ffffff")
+        console_window.resizable(False, False)
+        self.textConsole = Text(console_window, height = 50, width = 50)
+        self.textConsole.config(state=DISABLED)    
+               
+        self.textConsole.pack() 
+        #console_window.mainl)oop(
+
+    def insertInConsole(self,msg):
+        message=msg+"\n\n"
+        self.textConsole.configure(state='normal')
+        self.textConsole.insert(tk.END, message) 
+        self.textConsole.configure(state='disabled')
+
+    def setFirst(self):
+        self.turn=random.randint(0,2)
+
+    def changeTurn(self):
+        if (self.turn==0):
+            self.turn=1
+            self.insertInConsole("**USER TURN**")
+        else:
+            self.turn=0
+            self.insertInConsole("**PC TURN**")
+            self.pcTurn()
+
+    def startGame(self):
+        self.insertInConsole("Game started")
+        self.setFirst()
+        self.changeTurn()
+
+
+    def pcTurn(self):
+        self.changeTurn()
+
+
+    def guessCharacter(self):
+        if(self.str_comobo_guess.get()!=""):
+            self.insertInConsole("the user tried to guess the character with: "+ self.str_comobo_guess.get())
+            if(self.str_comobo_guess.get()==self.pc_character.getName()):
+                 self.insertInConsole("successful character")
+            else:
+                 self.insertInConsole("wrong character")
+                 messagebox.showerror(title="Fail", message="Wrong character")
+                 self.changeTurn()
+        else:
+            messagebox.showerror(title="Empty field", message="this field cannot be empty")
+
+
+

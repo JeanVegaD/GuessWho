@@ -122,18 +122,17 @@ def helpWindow():
     help_window.mainloop()
 
 def newGame():
-    character_list, combo_list1, name_list=backend.loadCharacters(filepath)
+    character_list_user, combo_list1, name_list=backend.loadCharacters(filepath)
+    random.shuffle(character_list_user)
+    character_list_pc=character_list_user
 
-    user_random=random.randint(0, len(character_list)-1)
-    user_char=character_list[user_random]
-    character_list.remove(user_char)
+    user_random=random.randint(0, len(character_list_user)-1)
+    user_char=character_list_user[user_random]
 
-    pc_random=random.randint(0, len(character_list)-1)
-    pc_char=character_list[pc_random]
-    character_list.remove(pc_char)
+    pc_random=random.randint(0, len(character_list_user)-1)
+    pc_char=character_list_user[pc_random]
 
-    game_window = GameWindow(character_list,user_char,combo_list1,name_list)
-
+    game_window = GameWindow(character_list_user,user_char,character_list_pc,pc_char,combo_list1,name_list)
 
 mainWindow()
 #newGame()

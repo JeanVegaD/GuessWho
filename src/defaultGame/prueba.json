@@ -344,7 +344,7 @@
          },
          {
             "name": "Marco",
-            "imgUrl":"../src/defaultGame/char_imgs/045-punk.png",
+            "imgUrl":"../src/defaultGame/char_imgs/045-punk-1.png",
             "features":[
             {
                 "gender":{
@@ -451,7 +451,28 @@
                 }
              }
              ]
+         },
+         {
+            "name": "Samuel",
+            "imgUrl":"../src/defaultGame/char_imgs/039-police-dog.png",
+            "features":[
+            {
+                "gender":{
+                    "type":"M"
+                } ,
+                "ethnicity": {
+                    "type":"Animal"
+                },
+                "hair":{
+                    "type":"Wavy",
+                    "color":"Brown",
+                    "length":"Short"
+                 },
+                 "cap":{
+                    "color":"Blue"
+                }
+             }
+             ]
          }
-
      ]
  }

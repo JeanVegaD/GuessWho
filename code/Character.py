@@ -19,9 +19,18 @@ class Character:
         character_aux = ImageTk.PhotoImage(character_resize)
         self.image=character_aux
 
+    def setSelectedImageChar(self):
+        character=Image.open(self.imagepath)
+        character_resize = character.resize((100, 98), Image.ANTIALIAS)
+        character_aux = ImageTk.PhotoImage(character_resize)
+        self.image_aux=character_aux
+
     #Return image from path
     def getImage(self):
         return self.image
+
+    def getImage_aux(self):
+         return self.image_aux
 
     #return name
     def getName(self):
