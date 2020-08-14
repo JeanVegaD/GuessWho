@@ -15,12 +15,40 @@ class GameWindow:
         self.char_list=char_list
         self.char_list_pc=char_list_pc
 
+
+        self.features_counter = []
+        self.features_values = []
+        self.features_counter_pc = []
+        self.features_values_pc = []
+        self.deleted_features = []
+        self.deleted_features_pc = []
+        for character in char_list:
+            for feature in character.features:
+                if not feature in self.features_values:
+                    self.features_values += [feature]
+                    self.features_counter += [1]
+                else:
+                    index_feature = self.features_values.index(feature)
+                    self.features_counter[index_feature] += 1
+
+                    
+        self.features_counter_pc = self.features_counter.copy()
+        self.features_values_pc = self.features_values.copy()   
+
+
+
+
         global char_list2
         char_list2=char_list
 
         self.user_character= user_character
         self.pc_character=pc_character
 
+
+        print("---------------------------------")
+        print(self.pc_character.name)
+        print(self.user_character.name)
+        print("---------------------------------")
         self.name_list=name_list
         self.comobo_list1=comobo_list1
 
@@ -70,7 +98,7 @@ class GameWindow:
         for i in (self.char_list):
             Label(charactersFrame_aux,image=self.charlbl_aux,bg="white",relief=FLAT).grid(row=gridY, column=gridX, padx=25, pady=10)
             gridX+=1
-            if(gridX==7):
+            if(gridX==6):
                 gridX=0
                 gridY+=1
 
@@ -78,13 +106,15 @@ class GameWindow:
         gridX=32
         gridY=15
         cont=0
+        print("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@")
         for character in  (self.char_list):
+            print(character.name)
             character.setImage()
             img=character.getImage()
             Label(charactersFrame_aux,image=img,bg="white",relief=FLAT,highlightthickness=0,bd=0).place(x=gridX,y=gridY)
             gridX+=164
             cont+=1
-            if(cont>6):
+            if(cont == 6):
                 cont=0
                 gridX=32
                 gridY+=154
@@ -99,7 +129,7 @@ class GameWindow:
             Label(charactersFrame_aux,textvariable=name_char,relief=FLAT,width=12,bg="#F2F2F2",fg="#0ECA9B",font=('Corbel',11,"bold")).place(x=gridX,y=gridY)
             gridX+=164
             cont+=1
-            if(cont>6):
+            if(cont  == 6):
                 cont=0
                 gridX=30
                 gridY+=154
@@ -109,6 +139,12 @@ class GameWindow:
 
         #charactersFrame_aux.mainloop()
 
+
+    ##
+    ##E: Lista de los caracteres a traves del self
+    ##S: Recarga las imagenes de los personajes 
+    ##R: 
+    ##
     def reloadCharacters(self):
         gridX=32
         gridY=15
@@ -119,12 +155,18 @@ class GameWindow:
             Label(charactersFrame_aux,image=img,bg="white",relief=FLAT,highlightthickness=0,bd=0).place(x=gridX,y=gridY)
             gridX+=164
             cont+=1
-            if(cont>6):
+            if(cont == 6):
                 cont=0
                 gridX=32
                 gridY+=154
 
-        
+    
+
+    ##
+    ##E: Obtiene el personaje del usario del self
+    ##S: Muestra en el personaje del usuario en la interfaz
+    ##R: 
+    ##
     def setCharacter(self):
         #Set background label for characters
         charlbl=Image.open("../src/images/label.png")
@@ -141,6 +183,12 @@ class GameWindow:
         name_char.set(self.user_character.getName())
         Label(self.winVar,textvariable=name_char,relief=FLAT,width=12,bg="#F2F2F2",fg="#0ECA9B",font=('Corbel',11,"bold")).place(x=35,y=708)
 
+
+    ##
+    ##E: Obtiene los valores mediante el self
+    ##S: Estabelce los combobox y setea las funciones de llenado 
+    ##R: 
+    ##
     def setCombobox(self):
 
         def fillCombo(combo,lista):
@@ -193,6 +241,11 @@ class GameWindow:
 
         Button(self.winVar,text="Ask Question",width=20,bg="#f2f2f2",fg="#404040",font=('Corbel',12),command=self.askIA ,relief=FLAT,highlightthickness=0,bd=0).place(x=780,y=640)
 
+    ##
+    ##E: Obtiene los valores mediante el self
+    ##S: Estabelce los combobox y setea las funciones de llenado 
+    ##R: 
+    ##
     def setEntry(self):
 
         def fillCombo(combo,lista):
@@ -212,9 +265,16 @@ class GameWindow:
 
         Button(self.winVar,text="Submit",width=20,bg="#f2f2f2",fg="#404040",command=self.guessCharacter,font=('Corbel',12),relief=FLAT,highlightthickness=0, bd=0).place(x=780,y=695)
 
+    ##
+    ##UI: genera un cuadro de dialogo con las preguntas
+    ##
     def askQuestion(self,msg):
         return messagebox.askyesno(message=msg, title="Question")
-         
+    
+
+    ##
+    ##UI: ventana de mostrar informacion en consola
+    ##  
     def initConsole(self):
         console_window=Toplevel()
         console_window.geometry("345x500")
@@ -227,15 +287,30 @@ class GameWindow:
         self.textConsole.pack() 
         #console_window.mainl)oop(
 
+
+    ##
+    ##E: Mensaje a mostrar
+    ##S: Incluye en la consola de comandos el mesanje ingresado
+    ##R: 
+    ##
     def insertInConsole(self,msg):
         message=msg+"\n\n"
         self.textConsole.configure(state='normal')
         self.textConsole.insert(tk.END, message) 
         self.textConsole.configure(state='disabled')
 
+    ##
+    ##E: 
+    ##S: Define el turno inicial del juego
+    ##
     def setFirst(self):
         self.turn=random.randint(0,2)
 
+
+    ##
+    ##E: Obtiene el turno actual 
+    ##S: Cambio el turno al del otro jugador
+    ##
     def changeTurn(self):
         if (self.turn==0):
             self.turn=1
@@ -245,29 +320,112 @@ class GameWindow:
             self.insertInConsole("**PC TURN**")
             self.pcTurn()
 
+
+    ##
+    ##E: 
+    ##S: Inicia todas las configuaciones del juego 
+    ##
     def startGame(self):
         self.insertInConsole("Game started")
         self.setFirst()
         self.changeTurn()
 
 
+     ##
+    ##E: 
+    ##S: Ejecuta la funcion de la IA param juagar
+    ##
     def pcTurn(self):
-        #char=self.char_list[5]
-        #char.imagepath="../src/images/xicon.png"
-        #self.char_list[5]=char
-        self.reloadCharacters()
+        max_index = self.features_counter_pc.index(max(self.features_counter_pc))
+        feature = self.features_values_pc[max_index]
+        question = "Character: "+feature[0]+"  "+feature[1]+" "+feature[2]+"?"
+        answer = self.askQuestion(question)
+
+        found_character = None
+        flag = False
+        for character in self.char_list_pc:
+            if answer:
+                if self.features_counter_pc[max_index] == 1 and feature in character.features:
+                    flag = True
+                    found_character = character
+                else:
+                    if not feature in character.features:
+                        for fea in character.features:
+                            if not fea in self.deleted_features_pc:
+                                index_feature = self.features_values_pc.index(fea)
+                                self.features_counter_pc[index_feature]-= 1
+                                if self.features_counter_pc[index_feature] == 0:
+                                    self.features_values_pc.remove(fea)
+                                    del self.features_counter_pc[index_feature]                     
+                        self.char_list_pc.remove(character)
+            else:
+                if feature in character.features:
+                    for fea in character.features:
+                        if not fea in self.deleted_features_pc:
+                            index_feature = self.features_values_pc.index(fea)
+                            self.features_counter_pc[index_feature]-= 1
+                            if self.features_counter_pc[index_feature] == 0:
+                                self.features_values_pc.remove(fea)
+                                del self.features_counter_pc[index_feature]       
+                    self.char_list_pc.remove(character)
+        if not flag:
+            self.changeTurn()
+            for i in self.features_values_pc:
+                if feature[0] in i and feature[1] in i:            
+                    self.deleted_features_pc+=[i]
+                    del self.features_counter_pc[self.features_values_pc.index(i)]
+                    self.features_values_pc.remove(i)
+        if flag:
+            messagebox.showinfo("LOST","PC WINS YOUR CHARACTER IS "+found_character.name)
+            self.winVar.destroy()
+        if len(self.char_list_pc) == 1:
+            print("Su caracter es:"+self.char_list_pc[0].name)
+            messagebox.showinfo("LOST","PC WINS YOUR CHARACTER IS "+self.char_list_pc[0].name)
+            self.winVar.destroy()
 
 
-
-        self.changeTurn()
-
+            
+    ##
+    ##E: Obtiene los valores de los comobox 
+    ##S: Crea una pregunta la cual se envia a la IA para ser analizada
+    ##
     def askIA(self):
-        if(str_combo_property.get()!="" and str_combo_property.get()!="" and str_combo_value.get()!=""):
-            features=[str_combo_property.get(),str_combo_property.get(),str_combo_value.get()]
+        if(str_combo_property.get()!="" and str_combo_adjective.get()!="" and str_combo_value.get()!=""):
+            feature=[str_combo_property.get(),str_combo_adjective.get(),str_combo_value.get()]              
+            if feature in self.pc_character.features:                
+                for character in self.char_list:
+                    if not feature in character.features:
+                        index_character = self.char_list.index(character)
+                        char=self.char_list[index_character]
+                        char.state = False
+                        char.imagepath="../src/images/xicon.png"
+                        self.char_list[index_character]=char
+            else:
+                for character in self.char_list:
+                    if feature in character.features:
+                        index_character = self.char_list.index(character)
+                        char=self.char_list[index_character]
+                        char.imagepath="../src/images/xicon.png"
+                        char.state = False
+                        self.char_list[index_character]=char               
+            self.reloadCharacters()
+            counter = 0
+            for i in self.char_list:
+                if i.state:
+                    counter+=1
+            if counter == 1:
+                messagebox.showinfo("WIN","YOU WIN PC CHARACTER IS "+self.pc_character.name)
+                self.winVar.destroy()
+            else:
+                self.changeTurn()
+                
         else:
             messagebox.showerror(title="Empty field", message="Fields cannot be empty")
 
-
+     ##
+    ##E: Obtiene un valor del comobobox
+    ##S: Determina si el persona seleccionado es el correcto
+    ##
     def guessCharacter(self):
         if(self.str_comobo_guess.get()!=""):
             self.insertInConsole("the user tried to guess the character with: "+ self.str_comobo_guess.get())

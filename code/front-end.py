@@ -143,8 +143,9 @@ def helpWindow():
 ##
 def newGame():
     character_list_user, combo_list1, name_list=backend.loadCharacters(filepath)
+
     random.shuffle(character_list_user)
-    character_list_pc=character_list_user
+    character_list_pc=character_list_user.copy()
 
     user_random=random.randint(0, len(character_list_user)-1)
     user_char=character_list_user[user_random]

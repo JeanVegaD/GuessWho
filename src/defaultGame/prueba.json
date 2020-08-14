@@ -16,8 +16,8 @@
                     "color":"Blonde",
                     "length":"Long"
                  },
-                 "crown":{
-                     "type":"Rounded"
+                 "accessories":{
+                     "color":"Yellow"
                  }
              }
              ]
@@ -100,7 +100,7 @@
                     "type":"M"
                 } ,
                 "ethnicity": {
-                    "type":"Caucasian "
+                    "type":"Caucasian"
                    },
 
                 "hair":{
@@ -289,8 +289,8 @@
                 "ethnicity": {
                     "type":"Muslim"
                    },
-                 "accessories":{
-                     "color":"Pink"
+                "accessories":{
+                    "color":"Pink"
                  }
              }
              ]
